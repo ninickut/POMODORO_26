@@ -1,48 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pomodoro + To-Do</title>
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   </head>
 
   <body>
     <main class="app">
-      <h1>Pomodoro + To-Do</h1>
+      <h1>Pomodoro</h1>
+      <div class="content">
+        <section class="pomodoro">
+          <h2>TIMER</h2>
 
-      <section class="pomodoro">
-        <h2>Pomodoro</h2>
+          <div class="modes">
+            <button class="mode active" data-mode="pomodoro">Pomodoro</button>
+            <button class="mode" data-mode="short-break">Pausa curta</button>
+            <button class="mode" data-mode="long-break">Pausa longa</button>
+          </div>
 
-        <div class="timer">
-          <span id="minutes">25</span>:<span id="seconds">00</span>
-        </div>
+          <div class="timer">
+            <span id="minutes">25</span>:<span id="seconds">00</span>
+          </div>
 
-        <div class="controls">
-          <button id="start">Start</button>
-          <button id="pause">Pause</button>
-          <button id="reset">Reset</button>
-        </div>
-      </section>
+          <div class="controls">
+            <button id="start">Start</button>
+            <button id="pause">Pause</button>
+            <button id="reset">Reset</button>
+          </div>
+        </section>
 
-      <section class="todo">
-        <h2>To-Do List</h2>
+        <section class="todo">
+          <h2>LISTA</h2>
 
-        <form id="todo-form">
-          <input
-            type="text"
-            id="todo-input"
-            placeholder="Digite uma tarefa"
-            required
-          />
-          <button type="submit">Adicionar</button>
-        </form>
+          <form id="todo-form">
+            <input
+              type="text"
+              id="todo-input"
+              placeholder="Digite uma tarefa"
+              required
+            />
+            <button type="submit">Adicionar</button>
+          </form>
 
-        <ul id="todo-list"></ul>
-      </section>
+          <ul id="todo-list"></ul>
+        </section>
+      </div>
     </main>
-
     <script src="js/script.js"></script>
   </body>
 </html>
