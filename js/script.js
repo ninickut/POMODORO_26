@@ -4,7 +4,7 @@
 const state = {
   pomodoro: {
     modo: 'pomodoro',      // 'pomodoro', 'descansoCurto', 'descansoLongo'
-    tempoRestante: 25 * 60, 
+    tempoRestante: 25 * 60,
     rodando: false,
     intervaloId: null,     // armazenar setInterval
   },
@@ -29,24 +29,22 @@ const dom = {
     input: document.getElementById('todo-input'),
     lista: document.getElementById('todo-list'),
   },
+  darkModeBtn: document.getElementById('dark-mode-btn'),
 };
 
 /* ==========================
        FUNÇÕES UTILITÁRIAS
 ========================== */
-// Formata segundos para MM:SS
 function formatarTempo(segundos) {
   const min = Math.floor(segundos / 60);
   const sec = segundos % 60;
   return `${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
 }
 
-// Atualiza display do timer
 function atualizarDisplay() {
   dom.pomodoro.display.textContent = formatarTempo(state.pomodoro.tempoRestante);
 }
 
-// Gera ID único para tarefas
 function gerarId() {
   return Date.now().toString();
 }
@@ -97,8 +95,11 @@ function resetarTimer() {
 function mudarModo(novoModo) {
   state.pomodoro.modo = novoModo;
   resetarTimer();
-  // Atualiza botão ativo
-  const botoes = [dom.pomodoro.btnPomodoro, dom.pomodoro.btnDescansoCurto, dom.pomodoro.btnDescansoLongo];
+  const botoes = [
+    dom.pomodoro.btnPomodoro,
+    dom.pomodoro.btnDescansoCurto,
+    dom.pomodoro.btnDescansoLongo
+  ];
   botoes.forEach(btn => btn.classList.remove('active'));
   switch (novoModo) {
     case 'pomodoro': dom.pomodoro.btnPomodoro.classList.add('active'); break;
@@ -111,11 +112,7 @@ function mudarModo(novoModo) {
          TO-DO LIST
 ========================== */
 function adicionarTarefa(texto) {
-  const tarefa = {
-    id: gerarId(),
-    texto,
-    feito: false,
-  };
+  const tarefa = { id: gerarId(), texto, feito: false };
   state.tarefas.push(tarefa);
   renderizarTarefas();
 }
@@ -142,7 +139,7 @@ function renderizarTarefas() {
     const btnRemover = document.createElement('button');
     btnRemover.textContent = 'X';
     btnRemover.addEventListener('click', e => {
-      e.stopPropagation(); // não dispara alternar
+      e.stopPropagation();
       removerTarefa(tarefa.id);
     });
 
@@ -170,6 +167,18 @@ dom.tarefas.form.addEventListener('submit', e => {
   if (texto) {
     adicionarTarefa(texto);
     dom.tarefas.input.value = '';
+  }
+});
+
+/* ==========================
+        MODO NOTURNO
+========================== */
+dom.darkModeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  if (document.body.classList.contains('dark-mode')) {
+    dom.darkModeBtn.textContent = 'Modo Claro';
+  } else {
+    dom.darkModeBtn.textContent = 'Modo Noturno';
   }
 });
 

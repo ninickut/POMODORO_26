@@ -29,10 +29,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative; /* Para posicionar o botão top-right */
 }
 
 /* ===== APP CARD ===== */
 .app {
+  position: relative;
   background-color: #fff;
   padding: 2.5rem;
   width: 100%;
@@ -50,6 +52,35 @@ h1 {
   font-weight: 700;
   color: var(--primary);
   margin-bottom: 2.5rem;
+}
+
+/* ===== MODO NOTURNO - BOTÃO ===== */
+.dark-mode-toggle {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+}
+
+#dark-mode-btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#dark-mode-btn:hover {
+  opacity: 0.85;
+  transform: scale(1.05);
+}
+
+body.dark-mode #dark-mode-btn {
+  background-color: #FFD580;
+  color: #2E2E2E;
 }
 
 /* ===== CONTEÚDO LADO A LADO ===== */
@@ -111,29 +142,39 @@ h2 {
   color: var(--text);
 }
 
-/* ===== CONTROLES DO POMODORO ===== */
-#controles-pomodoro {
-  display: flex;
-  gap: 0.7rem;
-  justify-content: center;
-}
-
-#controles-pomodoro button {
-  padding: 0.55rem 1.4rem;
+/* ===== BOTÕES COMUNS ===== */
+button {
+  cursor: pointer;
   border: none;
   border-radius: 8px;
-  background-color: var(--primary);
-  color: #fff;
   font-size: 0.85rem;
-  cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.2s;
 }
 
-#controles-pomodoro button:hover {
+/* Botões do Pomodoro e To-Do */
+#controles-pomodoro button,
+#todo-form button,
+.player-controls button {
+  padding: 0.55rem 1.4rem;
+  background-color: var(--primary);
+  color: #fff;
+}
+
+#controles-pomodoro button:hover,
+#todo-form button:hover,
+.player-controls button:hover {
   opacity: 0.9;
 }
 
-/* ===== TODO FORM ===== */
+#controles-pomodoro {
+  display: flex;
+  justify-content: center; /* centraliza horizontalmente */
+  align-items: center;     /* alinha verticalmente */
+  gap: 0.7rem;             /* espaço entre os botões */
+  margin-top: 1rem;
+}
+
+/* ===== FORMULÁRIO TODO ===== */
 #todo-form {
   display: flex;
   gap: 0.6rem;
@@ -146,4 +187,85 @@ h2 {
   border-radius: 6px;
   border: 1px solid var(--accent);
   font-size: 0.85rem;
+}
+
+/* ===== LISTA DE TAREFAS ===== */
+#todo-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.7rem;
+  border-bottom: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 0.3rem;
+  background-color: #f9f9f9;
+}
+
+#todo-list li.feito {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+#todo-list li button {
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  background-color: var(--accent);
+  color: #fff;
+  font-size: 0.75rem;
+}
+
+#todo-list li button:hover {
+  opacity: 0.8;
+}
+
+/* ===== PLAYER ===== */
+.player {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.player-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+#song-title {
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+/* ===== MODO NOTURNO ===== */
+body.dark-mode {
+  background-color: #2E2E2E;
+  color: #E0E0E0;
+}
+
+body.dark-mode .app {
+  background-color: #3C3C3C;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+}
+
+body.dark-mode h1,
+body.dark-mode h2 {
+  color: #FFD580;
+}
+
+body.dark-mode button {
+  /* Todos os botões já recebem cor pelo escopo específico */
+}
+
+body.dark-mode .mode.active {
+  background-color: #FFD580;
+  color: #2E2E2E;
+}
+
+body.dark-mode #todo-list li {
+  background-color: #4A4A4A;
+  border-bottom: 1px solid #666;
+}
+
+body.dark-mode #todo-list li.feito {
+  color: #AAA;
 }
