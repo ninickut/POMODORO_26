@@ -1,4 +1,5 @@
 :root {
+  /* Paleta de cores */
   --cafe-au-lait: #B07E63;
   --tan: #D3B593;
   --nickel: #78776C;
@@ -32,7 +33,7 @@ body {
 
 /* ===== APP CARD ===== */
 .app {
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 2.5rem;
   width: 100%;
   max-width: 900px;
@@ -82,14 +83,14 @@ h2 {
 }
 
 .mode {
-  background-color: var(--secondary);
-  color: var(--text);
-  font-size: 0.8rem;
   padding: 0.45rem 0.8rem;
+  font-size: 0.8rem;
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: 0.2s;
+  background-color: var(--secondary);
+  color: var(--text);
 }
 
 .mode.active {
@@ -110,14 +111,14 @@ h2 {
   color: var(--text);
 }
 
-/* ===== CONTROLES ===== */
-.controls {
+/* ===== CONTROLES DO POMODORO ===== */
+#controles-pomodoro {
   display: flex;
   gap: 0.7rem;
   justify-content: center;
 }
 
-button {
+#controles-pomodoro button {
   padding: 0.55rem 1.4rem;
   border: none;
   border-radius: 8px;
@@ -125,10 +126,10 @@ button {
   color: #fff;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: 0.2s;
 }
 
-button:hover {
+#controles-pomodoro button:hover {
   opacity: 0.9;
 }
 
@@ -141,5 +142,8 @@ button:hover {
 
 #todo-input {
   flex: 1;
-  padding: 0.55rem
+  padding: 0.55rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+  font-size: 0.85rem;
 }
